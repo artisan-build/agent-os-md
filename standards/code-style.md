@@ -9,6 +9,7 @@ This file is part of the Agent OS standards system. These global code style rule
 
 ## PHP
 - Write modern PHP. The minimum version required for each project is defined in its composer.json, so make sure that everything you write is considered best practices for that version.
+- All PHP files (including blade.php files) should have exactly one blank newline at the end of the file.
 
 ## Comments in PHP
 
@@ -17,6 +18,7 @@ This file is part of the Agent OS standards system. These global code style rule
 - Every class must have a docblock with a one or two-sentence description.
 - Method docblocks must not contain `@return` tags unless the return of the method is not specific enough to satisfy the PHPStan type checking.
 - Method docblocks must not contain `@param` tags unless the parameter is not specific enough to satisfy the PHPStan type checking.
+- Keep code complexity to a minimum. Use early returns rather than nested or complex conditionals. If you find yourself using elseif, find another way to solve the problem. Whenever you use else, ask yourself if there is an opportunity for an early return.
 
 ## Naming in PHP
 

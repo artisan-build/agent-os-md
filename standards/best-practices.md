@@ -66,14 +66,21 @@ Use the default Laravel skeleton structure, grouping files by their type. For no
 - Never skip or delete a test unless specifically instructed to do so
 - Never mock any class that offers test affordances like `fake()` in most Laravel facades
 
+## Roadmap Management
+
+- When the last task in a spec's tasks.md is marked complete, the corresponding roadmap item should be automatically marked as complete
+- This automation ensures roadmap stays current without manual intervention
+- The user performs their major review at spec completion, so task completion indicates the roadmap item is done
+
 ## Git
 
 - The GitHub CLI (`gh`) is available to you, and you should use it for git operations wherever it makes sense.
 - **Important -** Do not do any work on the main branch. Create a branch for the task you are assigned and then create a pull request.
-- 
+
 ### Commits
 - Commit frequently, with clear and descriptive messages
-- Do not amend or reset any commits. Create a new commit describing what you undid and why.
+- Commit after finishing every subtask when working on a task.
+- Do not amend or reset any commits. Create a new commit describing what you undid and why. Always be moving forward.
 
 ### Pull Requests
 - When opening a PR, make it a Draft PR. I'll tell you when to mark it ready for review.
