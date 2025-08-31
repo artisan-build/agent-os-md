@@ -280,6 +280,7 @@ encoding: UTF-8
 <step_metadata>
   <updates>tasks.md file</updates>
   <timing>immediately after completion</timing>
+  <triggers_roadmap_update>when last task completes</triggers_roadmap_update>
 </step_metadata>
 
 <update_format>
@@ -297,9 +298,17 @@ encoding: UTF-8
   <emoji>⚠️</emoji>
 </blocking_criteria>
 
+<last_task_completion>
+  <check>Are all tasks in spec now marked [x]?</check>
+  <if_yes>Proceed to Step 10 for automatic roadmap update</if_yes>
+  <note>When the final task is marked complete, the corresponding roadmap item will be automatically marked as done</note>
+</last_task_completion>
+
 <instructions>
   ACTION: Update tasks.md after each task completion
   MARK: [x] for completed items immediately
+  CHECK: If this was the last uncompleted task in the spec
+  TRIGGER: Automatic roadmap update if all tasks now complete
   DOCUMENT: Blocking issues with ⚠️ emoji
   LIMIT: 3 attempts before marking as blocked
 </instructions>
@@ -395,23 +404,32 @@ encoding: UTF-8
 
 <step_metadata>
   <checks>@.agent-os/product/roadmap.md</checks>
-  <updates>if spec completes roadmap item</updates>
+  <updates>automatically when all spec tasks complete</updates>
 </step_metadata>
+
+<automatic_completion_check>
+  <trigger>when marking the last task as complete in tasks.md</trigger>
+  <actions>
+    1. CHECK if all tasks in current spec's tasks.md are marked [x]
+    2. IDENTIFY corresponding roadmap item
+    3. MARK roadmap item as complete automatically
+  </actions>
+</automatic_completion_check>
 
 <roadmap_criteria>
   <update_when>
-    - spec fully implements roadmap feature
-    - all related tasks completed
+    - all tasks in spec's tasks.md are marked [x] (automatic)
+    - OR spec fully implements roadmap feature (manual check)
     - tests passing
   </update_when>
-  <caution>only mark complete if absolutely certain</caution>
+  <note>Roadmap items are automatically marked complete when the last task in a spec is checked off</note>
 </roadmap_criteria>
 
 <instructions>
   ACTION: Review roadmap.md for related items
-  EVALUATE: If current spec completes roadmap goals
-  UPDATE: Mark roadmap items complete if applicable
-  VERIFY: Certainty before marking complete
+  CHECK: If all tasks in current spec are complete
+  UPDATE: Automatically mark roadmap item as complete if all tasks done
+  RATIONALE: User reviews code at spec completion, so completion of all tasks indicates roadmap item is done
 </instructions>
 
 </step>
@@ -536,7 +554,7 @@ encoding: UTF-8
     - [ ] tasks.md updated
     - [ ] Code committed and pushed
     - [ ] Pull request created
-    - [ ] Roadmap checked/updated
+    - [ ] Roadmap automatically updated if all spec tasks complete
     - [ ] Summary provided to user
   </verify>
 </final_checklist>
