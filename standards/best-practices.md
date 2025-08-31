@@ -58,6 +58,8 @@ Use the default Laravel skeleton structure, grouping files by their type. For no
 - Use consistent naming conventions
 
 ### Testing
+- Do not test the framework. Laravel, Livewire, etc. have tests for things like CSRF protection, database migrations, etc. and we only want to test our own appliation code.
+- Do not use assertSee() and similar assertions on site content because that is subject to change and those tests are flakey, particularly in Livewire. 
 - Write tests for new functionality
 - When modifying existing code, make sure it is under test. If it is not, write a test first before modifying the code.
 - When fixing a bug, write a test first to demonstrate the bug, then fix the bug and ensure the test passes.
